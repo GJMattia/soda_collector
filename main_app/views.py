@@ -1,11 +1,6 @@
 from django.shortcuts import render
 
-sodas = [
-    {'name': 'Pepsi', 'color': 'brown',
-        'description': 'carbonated cola soft drink', 'release_date': 1965},
-    {'name': 'Sprite', 'color': 'clear',
-     'description': 'lemon and lime-flavored soft drink', 'release_date': 1961},
-]
+from .models import Soda
 
 
 def home(request):
@@ -17,6 +12,12 @@ def about(request):
 
 
 def sodas_index(request):
+    sodas = Soda.objects.all()
     return render(request, 'sodas/index.html', {
         'sodas': sodas
     })
+
+
+def sodas_detail(request, soda_id):
+    soda = Soda.objects.get(id=soda_id)
+    return render(request, 'sodas/detail.html', {'soda': soda})

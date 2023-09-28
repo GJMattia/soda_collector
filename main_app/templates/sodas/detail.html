@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>More information about {{ soda.name }}</h1>
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">{{ soda.name }}</span>
+      <p>Color: {{ soda.color }}</p>
+      <p>Parent Company: {{ soda.parent_company }}</p>
+      <p>Released in: {{ soda.release_year }}</p>
+  </div>
+</div>
+{% endblock %}

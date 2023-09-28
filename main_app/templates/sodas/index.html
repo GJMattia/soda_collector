@@ -5,11 +5,13 @@
 
 {% for soda in sodas %}
   <div class="card">
+    <a href="{% url 'detail' soda.id %}">
     <div class="card-content">
       <span class="card-title">{{ soda.name }}</span>
+    </a>
       <p>Color: {{ soda.color }}</p>
-      <p>Description: {{ soda.description }}</p>
-      <p>Released in: {{ soda.release_date }}</p>
+      <p>Parent Company: {{ soda.parent_company }}</p>
+      <p>Released in: {{ soda.release_year }}</p>
     </div>
   </div>
 {% endfor %}
