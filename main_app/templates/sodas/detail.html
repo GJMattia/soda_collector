@@ -8,5 +8,9 @@
       <p>Parent Company: {{ soda.parent_company }}</p>
       <p>Released in: {{ soda.release_year }}</p>
   </div>
+  <div class="card-action">
+    <a href="{% url 'sodas_update' soda.id %}">Edit</a>
+    <a href="{% url 'sodas_delete' soda.id %}">Delete</a>
+  </div>
 </div>
 {% endblock %}
