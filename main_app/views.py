@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Soda
+from .forms import ConsumptionForm
 
 
 def home(request):
@@ -20,7 +21,8 @@ def sodas_index(request):
 
 def sodas_detail(request, soda_id):
     soda = Soda.objects.get(id=soda_id)
-    return render(request, 'sodas/detail.html', {'soda': soda})
+    consumption_form = ConsumptionForm()
+    return render(request, 'sodas/detail.html', {'soda': soda, 'consumption_form': consumption_form})
 
 
 class SodaCreate(CreateView):
@@ -36,3 +38,12 @@ class SodaUpdate(UpdateView):
 class SodaDelete(DeleteView):
     model = Soda
     success_url = '/sodas'
+
+
+def add_consumption(request, soda_id):
+    form = ConsumptionForm(request.POST)
+    if form.is_valid():
+        new_consumption = form.save(commit=False)
+        new_consumption.soda_id = soda_id
+        new_consumption.save()
+    return redirect('detail', soda_id=soda_id)

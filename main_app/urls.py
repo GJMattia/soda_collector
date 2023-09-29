@@ -9,5 +9,6 @@ urlpatterns = [
     path('sodas/create/', views.SodaCreate.as_view(), name='sodas_create'),
     path('sodas/<int:pk>/update/', views.SodaUpdate.as_view(), name='sodas_update'),
     path('sodas/<int:pk>/delete/', views.SodaDelete.as_view(), name='sodas_delete'),
-
+    path('sodas/<int:soda_id>/add_feeding/',
+         views.add_consumption, name='add_consumption'),
 ]
