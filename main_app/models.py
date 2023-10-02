@@ -10,11 +10,23 @@ TIMES = (
 )
 
 
+class Store(models.Model):
+    name = models.CharField(max_length=20)
+    state = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('stores_detail', kwargs={'pk': self.id})
+
+
 class Soda(models.Model):
     name = models.CharField(max_length=20)
     parent_company = models.CharField(max_length=20)
     color = models.CharField(max_length=15)
     release_year = models.IntegerField()
+    stores = models.ManyToManyField(Store)
 
     def __str__(self):
         return self.name
